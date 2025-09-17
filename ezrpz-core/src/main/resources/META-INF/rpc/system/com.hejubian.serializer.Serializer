@@ -1,0 +1,2 @@
+jdk=com.hejubian.serializer.JdkSerializer
+hessian=com.hejubian.serializer.HessianSerializer

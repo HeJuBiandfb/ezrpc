@@ -8,6 +8,7 @@ import com.hejubian.model.RpcRequest;
 import com.hejubian.model.RpcResponse;
 import com.hejubian.serializer.JdkSerializer;
 import com.hejubian.serializer.Serializer;
+import com.hejubian.serializer.SerializerFactory;
 
 
 import java.io.IOException;
@@ -30,7 +31,9 @@ public class ServiceProxy implements InvocationHandler {
 
 
         // 指定序列化器
-        Serializer serializer = new JdkSerializer();
+        final Serializer serializer = SerializerFactory.getSerializer(RpcApplication.getRpcConfig().getSerializer());
+
+        System.out.println("serializer: " + serializer);
 
         // 构造请求
         RpcRequest rpcRequest = RpcRequest.builder()
@@ -43,10 +46,11 @@ public class ServiceProxy implements InvocationHandler {
             // 序列化
             byte[] bodyBytes = serializer.serialize(rpcRequest);
             // 发送请求
-            // todo 注意，这里地址被硬编码了（需要使用注册中心和服务发现机制解决）
 
             String serverHost = RpcApplication.getRpcConfig().getServerHost();
             Integer serverPort = RpcApplication.getRpcConfig().getServerPort();
+            System.out.println("http://"+ serverHost+ ":" + serverPort);
+
             System.out.println("http://"+ serverHost+ ":" + serverPort);
 
             try (HttpResponse httpResponse = HttpRequest.post("http://"+ serverHost+ ":" + serverPort)

@@ -1,0 +1,4 @@
+json=com.hejubian.serializer.JsonSerializer
+kryo=com.hejubian.serializer.KryoSerializer
+jdk=com.hejubian.serializer.JdkSerializer
+hessian=com.hejubian.serializer.HessianSerializer

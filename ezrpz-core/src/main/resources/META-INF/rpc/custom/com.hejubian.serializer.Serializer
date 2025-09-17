@@ -1,0 +1,2 @@
+json=com.hejubian.serializer.JsonSerializer
+kryo=com.hejubian.serializer.KryoSerializer

@@ -1,5 +1,6 @@
 package com.hejubian.consumer;
 
+import com.hejubian.RpcApplication;
 import com.hejubian.common.model.User;
 import com.hejubian.common.service.UserService;
 import com.hejubian.config.RpcConfig;
@@ -9,7 +10,7 @@ import com.hejubian.utils.ConfigUtils;
 public class ConsumerExample {
     public static void main(String[] args) {
 
-        RpcConfig rpc = ConfigUtils.loadConfig(RpcConfig.class, "rpc");
+        RpcConfig rpc = RpcApplication.getRpcConfig();
         System.out.println(rpc);
 
         UserService userService = ServiceProxyFactory.getProxy(UserService.class);

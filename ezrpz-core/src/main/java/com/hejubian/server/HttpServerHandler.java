@@ -1,10 +1,12 @@
 package com.hejubian.server;
 
+import com.hejubian.RpcApplication;
 import com.hejubian.model.RpcRequest;
 import com.hejubian.model.RpcResponse;
 import com.hejubian.registry.LocalRegistry;
 import com.hejubian.serializer.JdkSerializer;
 import com.hejubian.serializer.Serializer;
+import com.hejubian.serializer.SerializerFactory;
 import io.vertx.core.Handler;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServerRequest;
@@ -21,7 +23,7 @@ public class HttpServerHandler implements Handler<HttpServerRequest> {
     @Override
     public void handle(HttpServerRequest httpServerRequest) {
         //指定使用的序列化器
-        final Serializer serializer = new JdkSerializer();
+        final Serializer serializer = SerializerFactory.getSerializer(RpcApplication.getRpcConfig().getSerializer());
 
         // 记录日志
         log.info("接收到请求: {}", httpServerRequest.uri());
