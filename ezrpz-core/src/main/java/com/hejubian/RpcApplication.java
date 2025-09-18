@@ -1,7 +1,10 @@
 package com.hejubian;
 
+import com.hejubian.config.RegistryConfig;
 import com.hejubian.config.RpcConfig;
 import com.hejubian.constant.RpcConstant;
+import com.hejubian.registry.Registry;
+import com.hejubian.registry.RegistryFactory;
 import com.hejubian.utils.ConfigUtils;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +20,10 @@ public class RpcApplication {
     public static void init(RpcConfig newrpcConfig){
         rpcConfig = newrpcConfig;
         log.info("rpc init, config = {}", newrpcConfig.toString());
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+        registry.init(registryConfig);
+        log.info("registry init, registry = {}", registryConfig.getRegistry());
     }
 
     /**
