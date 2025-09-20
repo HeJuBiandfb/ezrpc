@@ -51,7 +51,7 @@ public class SpiLoader {
      * @return
      * @param <T>
      */
-    public static <T> T getinstance(Class<?> clazz, String key){
+    public static <T> T getInstance(Class<?> clazz, String key){
         String name = clazz.getName();
         Map<String, Class<?>> keyClassMap = loaderMap.get(name);
         if (keyClassMap == null){

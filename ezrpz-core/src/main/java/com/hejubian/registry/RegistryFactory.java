@@ -13,6 +13,6 @@ public class RegistryFactory {
     private static final Registry DEFAULT_REGISTRY = new EtcdRegistry();
 
     public static Registry getInstance(String key) {
-        return SpiLoader.getinstance(Registry.class, key);
+        return SpiLoader.getInstance(Registry.class, key);
     }
 }

@@ -30,6 +30,6 @@ public class SerializerFactory {
      * @return
      */
     public static Serializer getSerializer(String key) {
-        return SpiLoader.getinstance(Serializer.class, key);
+        return SpiLoader.getInstance(Serializer.class, key);
     }
 }
