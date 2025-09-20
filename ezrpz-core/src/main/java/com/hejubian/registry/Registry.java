@@ -4,6 +4,9 @@ import com.hejubian.config.RegistryConfig;
 import com.hejubian.model.ServiceMetaInfo;
 
 import java.util.List;
+/**
+ * 注册中心接口
+ */
 
 public interface Registry {
     /**
@@ -36,4 +39,15 @@ public interface Registry {
      * 服务销毁
      */
     void destroy();
+
+    /**
+     * 心跳检测（服务端）
+     */
+    void heartBeat();
+
+    /**
+     * 监听服务节点变化（消费端）
+     * @param serviceNodeKey
+     */
+    void watch(String serviceNodeKey);
 }

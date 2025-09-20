@@ -1,1 +1,1 @@
-etcd=com.hejubian.registry.registry.EtcdRegistry
+etcd=com.hejubian.registry.EtcdRegistry
