@@ -9,6 +9,7 @@ import com.hejubian.registry.LocalRegistry;
 import com.hejubian.registry.Registry;
 import com.hejubian.registry.RegistryFactory;
 import com.hejubian.server.VertxHttpServer;
+import com.hejubian.tcp.VertxTcpServer;
 
 public class ProviderExample {
     public static void main(String[] args) {
@@ -25,6 +26,7 @@ public class ProviderExample {
         Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
         ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
         serviceMetaInfo.setServiceName(name);
+        serviceMetaInfo.setServiceVersion(rpcConfig.getVersion());
         serviceMetaInfo.setServiceHost(rpcConfig.getServerHost());
         serviceMetaInfo.setServicePort(rpcConfig.getServerPort());
         try {
@@ -33,9 +35,9 @@ public class ProviderExample {
             throw new RuntimeException(e);
         }
 
-        //启动web服务
-        VertxHttpServer vertxHttpServer = new VertxHttpServer();
-        vertxHttpServer.start(RpcApplication.getRpcConfig().getServerPort());
+        //启动 TCP 服务
+        VertxTcpServer vertxTcpServer = new VertxTcpServer();
+        vertxTcpServer.start(RpcApplication.getRpcConfig().getServerPort());
     }
 
 }
